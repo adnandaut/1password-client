@@ -465,7 +465,7 @@ class OnePassword:
         if not secret_ref or not isinstance(secret_ref, str):
             raise ValueError("secret_ref must be a non-empty string")
 
-        return read_bash_return("op read '{}'".format(secret_ref))
+        return read_bash_return("op read '{}'".format(secret_ref), single=False).removesuffix('\n')
 
     @staticmethod
     def get_item_otp(uuid: str | bytes):
